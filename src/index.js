@@ -2,5 +2,5 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Trello from './components/Trello';
-
-ReactDOM.render(<Trello />, document.getElementById('root'));
+import Data from './data/testData';
+ReactDOM.render(<Trello data={Data}/>, document.getElementById('root'));
