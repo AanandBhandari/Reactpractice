@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Trello from './components/Trello';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Trello />, document.getElementById('root'));

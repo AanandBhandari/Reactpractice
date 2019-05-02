@@ -12,3 +12,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.Container {
+  border: 3px solid lightskyblue;
+  width : 30%;
+  height: 25%;
+  margin-left:25%;
+  margin-top: 20px; 
+  padding: 1%; 
+  background: lightgrey;
+  
+}
+h3{
+  color: blueviolet;
+}
+.dot {
+float: right;
+}
