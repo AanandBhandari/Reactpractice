@@ -3,7 +3,7 @@ import React from 'react';
 function Add() {
     return (
         <div className="Add">
-            <h3>Add a card... </h3>
+            <h3><button className="btn btn-black">Add a card...</button>  </h3>
         </div>
     );
 }
