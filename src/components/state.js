@@ -7,18 +7,37 @@ class CountingParent extends React.Component {
         console.log('Child says', action);
         // actionCount is incremented, and
         // the new count replaces the existing one
+        // this.setState({
+        //     actionCount: this.state.actionCount + 1
+        // });
+        this.setState((state,props) => {
+            return {
+                value: state.value + 1
+            }
+        })
+    }
+    resetAction = (action) => {
         this.setState({
-            actionCount: this.state.actionCount + 1
-        });
+            actionCount : 0
+        })
     }
     render() {
         return (
             <div>
                 <Child onAction={this.handleAction} />
+                <Reset onAction={this.resetAction}/>
                 <p>Clicked {this.state.actionCount} times</p>
+
             </div>
         );
     }
+}
+function Reset({onAction}) {
+    return(
+        <button onClick= {onAction}>
+            Reset!
+        </button>
+    )
 }
 function Child({onAction}) {
     return(
