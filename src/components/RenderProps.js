@@ -29,8 +29,8 @@ class Mouse extends React.Component {
     render() {
         return (
             <div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
-                <p>The current mouse position is ({this.state.x}, {this.state.y})</p>
-                <Cat mouse ={this.state}/>
+                {/*  “render prop” refers to a technique for sharing code between React components using a prop whose value is a function. */}
+               {this.props.render(this.state)}
             </div>
         )
     }
@@ -42,7 +42,9 @@ export default class MouseTracker extends React.Component {
         return (
             <div>
                 <h1>Move the mouse around!</h1>
-                <Mouse/>
+                <Mouse render={(mouse)=>(
+                    <Cat mouse={mouse}/>
+                )}/>
             </div>
         )
     }
