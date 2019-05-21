@@ -1,4 +1,15 @@
 import React from 'react'
+
+class Cat extends React.Component {
+    // chaseMouse()
+    render() {
+        const { mouse } = this.props
+        return (
+            <img src="/img/cat.png" style={{height:30, position: 'absolute', left: mouse.x, top: mouse.y }} alt={'cat'} />
+            // <h1>hello</h1>
+        )
+    }
+}
 // making mouse as reusable component
 class Mouse extends React.Component {
     constructor(props) {
@@ -19,17 +30,19 @@ class Mouse extends React.Component {
         return (
             <div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
                 <p>The current mouse position is ({this.state.x}, {this.state.y})</p>
+                <Cat mouse ={this.state}/>
             </div>
         )
     }
 }
+
 
 export default class MouseTracker extends React.Component {
     render() {
         return (
             <div>
                 <h1>Move the mouse around!</h1>
-                <Mouse />
+                <Mouse/>
             </div>
         )
     }
