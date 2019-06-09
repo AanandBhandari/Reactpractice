@@ -9,7 +9,7 @@ import {
 
 const Public = () => <h2>Hello Public!</h2>
 const Protected = () => <h2>hello Privated</h2>
-const Login = () => <h2>First Login</h2>
+// const Login = () => <h2>First Login</h2>
 
 // authCheck 
 const authCheck = {
@@ -24,9 +24,39 @@ const authCheck = {
     }
 }
 
-// const PrivateRoute = ({path,component}) => (
-    
-// )
+class Login extends React.Component {
+    state = {
+        redirectToReferrer : false
+    }
+    login = () => {
+        authCheck.authenticate(()=> {
+            this.setState(()=>({
+                redirectToReferrer : true
+            }))
+        })
+    }
+    render() {
+        const { redirectToReferrer } = this.state
+
+        if (redirectToReferrer === true) {
+            return <Redirect to='/' />
+        }
+        return(
+            <div>
+                <p>You must log in to view the page</p>
+                <button onClick={this.login}>Log in</button>
+            </div>
+        )
+    }
+}
+
+const PrivateRoute = ({path,component}) => (
+    <Route path={path} render = {(component)=>(
+        authCheck.isAuthenticated 
+        ?
+        component ={component} : <Redirect to ='Login'/>
+    )}/>
+)
 
 export default function AuthExample() {
     return (
@@ -43,7 +73,7 @@ export default function AuthExample() {
                 {/* handling Route */}
                 <Route path='/public' component={Public}/>
                 <Route path ='/login' component={Login}/>
-                {/* <PrivateRoute path='/protected' component={Protected}/> */}
+                <PrivateRoute path='/protected' component={Protected}/>
             </div>
         </Router>
     )
