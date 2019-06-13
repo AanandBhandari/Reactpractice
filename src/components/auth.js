@@ -29,17 +29,18 @@ class Login extends React.Component {
         redirectToReferrer : false
     }
     login = () => {
-        authCheck.authenticate(()=> {
-            this.setState(()=>({
-                redirectToReferrer : true
+        authCheck.authenticate(() => {
+            this.setState(() => ({
+                redirectToReferrer: true
             }))
         })
     }
     render() {
+        const { from } = this.props.location.state || { from: { pathname: '/' } }
         const { redirectToReferrer } = this.state
 
         if (redirectToReferrer === true) {
-            return <Redirect to='/' />
+            return <Redirect to={from} />
         }
         return(
             <div>
@@ -50,12 +51,15 @@ class Login extends React.Component {
     }
 }
 
-const PrivateRoute = ({path,component}) => (
-    <Route path={path} render = {(component)=>(
-        authCheck.isAuthenticated 
-        ?
-        component ={component} : <Redirect to ='Login'/>
-    )}/>
+const PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={(props) => (
+        authCheck.isAuthenticated === true
+            ? <Component {...props} />
+            : <Redirect to={{
+                pathname: '/login',
+                state: { from: props.location }
+            }} />
+    )} />
 )
 
 export default function AuthExample() {
