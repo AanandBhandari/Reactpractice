@@ -58,33 +58,37 @@ const setCount = ({set}) => {
     }
 }
 
+// Reducers
+// they are pure function
+// never change state or action directly
+const countReducer = (state = { count: 0 }, action) => {
+    switch (action.type) {
+        case 'INCREMENT':
+            return {
+                count: state.count + action.incrementBy
+            }
+        case 'DECREMENT':
+            return {
+                count: state.count - action.decrementBy
+            }
+        case 'SET':
+            return {
+                count: action.set
+            }
+        case 'RESET':
+            return {
+                count: 0
+            }
+
+        default:
+            return state;
+    }
+}
 
 const Redux = () => {
     // createStore takes 2 params first the state with init value and 
     // anoter is action obj to take action according to action.type
-    const store = createStore((state = {count:0},action)=>{
-        switch (action.type) {
-            case 'INCREMENT':
-                return {
-                    count : state.count + action.incrementBy
-                }
-            case 'DECREMENT':
-                return {
-                    count: state.count - action.decrementBy
-                }
-            case 'SET':
-                return {
-                    count: action.set
-                }
-            case 'RESET':
-                return {
-                    count: 0
-                }
-        
-            default:
-                return state;
-        }
-    });
+    const store = createStore(countReducer);
     // suscribe will notify if state is changed
     // it takes a function as params
     store.subscribe(()=>{
