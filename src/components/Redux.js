@@ -7,12 +7,14 @@ const Redux = () => {
     const store = createStore((state = {count:0},action)=>{
         switch (action.type) {
             case 'INCREMENT':
+                const incrementBy = typeof action.incrementBy === 'number' ? action.incrementBy : 1
                 return {
-                    count : state.count +1
+                    count : state.count + incrementBy
                 }
             case 'DECREMENT':
+                const decrementBy = typeof action.decrementBy === 'number' ? action.decrementBy : 1
                 return {
-                    count: state.count - 1
+                    count: state.count - decrementBy
                 }
             case 'SET':
                 return {
@@ -36,10 +38,13 @@ const Redux = () => {
     // dispatch method takes action object to communicate with store,
     // action determines what kind of action to b taken
     store.dispatch({
-        type: 'INCREMENT'
+        type: 'INCREMENT',
+        // costum action
+        incrementBy : 5
     });
     store.dispatch({
-        type: 'DECREMENT'
+        type: 'DECREMENT',
+        decrementBy : 3
     })
     store.dispatch({
         type: 'SET',
