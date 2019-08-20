@@ -39,7 +39,7 @@ const incrementCount = ({incrementBy = 1} = {}) => {
     }
 }
 
-const decrementCount = ({ decrementBy = 1 } = {}) => {
+const decrementCount = ({ decrementBy = 1 }={}) => {
     return {
         type: 'DECREMENT',
         // costum action
@@ -99,7 +99,7 @@ const countReducer = (state = { count: 0 }, action) => {
     // action determines what kind of action to b taken
     store.dispatch(incrementCount({ incrementBy : 5}));
     store.dispatch(decrementCount({ decrementBy : 10}));
-    store.dispatch(decrementCount({}))
+    store.dispatch(decrementCount())
     store.dispatch(resetCount());
     store.dispatch(setCount({set : 2}));
     return(
