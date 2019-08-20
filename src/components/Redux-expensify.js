@@ -1,6 +1,7 @@
 import {createStore,combineReducers} from 'redux';
 import React from 'react';
 import uuid from 'uuid';
+import { stat } from 'fs';
 
 
 const ComplexRedux = () => {
@@ -28,6 +29,10 @@ const editExpense = (id, updates)=> ({
     updates
 })
 
+    const setTextFilter = (text = '')=> ({
+        type: 'SET_TEXT_FILTER',
+        text
+    })
 
 // Expenses Reducer
 const expensesReducerDefaultState = [];
@@ -64,6 +69,11 @@ const filterReducerDefaultState = {
 }
 const filterReducer = (state = filterReducerDefaultState,action)=> {
     switch (action.type) {
+        case 'SET_TEXT_FILTER':
+        return {
+            ...state,
+            text : action.text
+        }
         default:
             return state;
     }
@@ -82,8 +92,12 @@ store.subscribe(()=> {
 
 const expenseOne = store.dispatch(addExpense({description: 'Rent',amount:100}));
 const expenseTwo = store.dispatch(addExpense({ description: 'Rent', amount: 450 }));
-const deleteOne = store.dispatch(deleteExpense({id:expenseOne.expense.id}));
+// const deleteOne = store.dispatch(deleteExpense({id:expenseOne.expense.id}));
 store.dispatch(editExpense(expenseTwo.expense.id,{amount:500}));
+
+// dispatching filters
+store.dispatch(setTextFilter('rent'));
+store.dispatch(setTextFilter());
 const demoState = {
     expenses : [{
         id : 'fsdfs',
