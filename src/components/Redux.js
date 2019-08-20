@@ -1,5 +1,6 @@
 import React from 'react';
 import {createStore} from 'redux';
+        const Redux = () => {
 
 // action generator are functions that return action objects
 // const incrementCount = ({ incrementBy})=> {
@@ -85,7 +86,6 @@ const countReducer = (state = { count: 0 }, action) => {
     }
 }
 
-const Redux = () => {
     // createStore takes 2 params first the state with init value and 
     // anoter is action obj to take action according to action.type
     const store = createStore(countReducer);

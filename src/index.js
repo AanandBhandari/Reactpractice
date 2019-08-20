@@ -7,7 +7,8 @@ import './index.css';
 // import AuthExample from './components/auth'
 // import MouseTracker from './components/RenderProps'
 // import Search from './components/search'
-import Redux from './components/Redux'
+// import Redux from './components/Redux'
+import ComplexRedux from './components/Redux-expensify'
 // ReactDOM.render(<Trello data={Data}/>, document.getElementById('root'));
-ReactDOM.render(<Redux/>, document.getElementById('root'));
+ReactDOM.render(<ComplexRedux/>, document.getElementById('root'));
 
